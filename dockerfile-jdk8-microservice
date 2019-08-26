@@ -8,4 +8,8 @@ WORKDIR /usr/local/bin
 
 COPY customer-service.jar .
 
+# This can override while running the container
 CMD ["java", "-jar", "customer-service.jar"]
+
+# ENTRYPOINT ["java","-jar","customer-service.jar"]
+
