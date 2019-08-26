@@ -4,4 +4,8 @@ MAINTAINER madhukar gunda
 
 RUN apt-get update && apt-get install -y  openjdk-8-jdk
 
+WORKDIR /usr/local/bin 
+
+COPY customer-service.jar .
+
 CMD ["/bin/bash"]
