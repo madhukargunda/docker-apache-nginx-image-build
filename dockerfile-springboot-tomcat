@@ -1,1 +1,25 @@
 
+# alpine doesnot contains the bash or/bin/bash only /bin/sh
+# by default it will go to the /usr/local/tomcat
+
+FROM tomcat:8.5.16-alpine
+
+MAINTAINER madhukar gunda study.pattern@gmail.com
+
+#  1.Normally in tomcat we use the Startup script to start the server and this script 
+#    Redirect the output to logs file.
+#  2.If we redirect to the logs to STDOUT,Docker will catch these logs will show as part of docker logs.
+#  3.catalina.sh low level script to start the server
+
+# Not Required but we can keep for maintainence purpose only
+
+RUN rm -rf /usr/local/webapps/*
+
+COPY ./target/customer-service.war /usr/local/tomcat/webapps/ROOT.war
+
+EXPOSE 8080
+
+ENV JAVA_OPTS = "-Dspring.profiles.active=docker-demo"
+
+CMD ["catalina.sh" , "run"]
+
